@@ -11,6 +11,10 @@ public class DemoController {
     private Coach myCoach;
 
     // define a constructor for dependency injection
+    // Autowired annotation tells Spring to inject the dependency here.
+    // We can use constructor injection, setter injection, or field injection.
+    // How does Spring know which implementation of Coach to inject?
+    // Because we have only one implementation of Coach interface (CricketCoach).
     @Autowired
     public DemoController(Coach theCoach) {
         myCoach = theCoach;
