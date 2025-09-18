@@ -22,6 +22,12 @@ public class DemoController {
         myCoach = theCoach;
     }
 
+    // define a setter method for dependency injection
+    @Autowired
+    public void setMyCoach(Coach theCoach) {
+        this.myCoach = theCoach;
+    }
+
     // expose a REST endpoint
     @GetMapping("/dailyworkout")
     public String dailyWorkout() {
