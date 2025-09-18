@@ -1,6 +1,7 @@
 package com.BehzadRezaei.springcoredemo.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,15 +19,17 @@ public class DemoController {
     // How does Spring know which implementation of Coach to inject?
     // Because we have only one implementation of Coach interface (CricketCoach).
     @Autowired
-    public DemoController(Coach theCoach) {
+    // If we had multiple implementations, we would need to use @Qualifier annotation to specify which one to use.
+    // @Qualifier("cricketCoach") // specify which bean to inject by its name, which is the class name with the first letter in lowercase.
+    public DemoController(@Qualifier("baseballCoach") Coach theCoach) {
         myCoach = theCoach;
     }
 
-    // define a setter method for dependency injection
-    @Autowired
-    public void setMyCoach(Coach theCoach) {
-        this.myCoach = theCoach;
-    }
+    // // define a setter method for dependency injection
+    // @Autowired
+    // public void setMyCoach(Coach theCoach) {
+    //     this.myCoach = theCoach;
+    // }
 
     // expose a REST endpoint
     @GetMapping("/dailyworkout")
