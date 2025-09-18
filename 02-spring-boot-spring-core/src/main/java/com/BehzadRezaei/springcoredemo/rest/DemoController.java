@@ -1,8 +1,10 @@
-package com.BehzadRezaei.springcoredemo;
+package com.BehzadRezaei.springcoredemo.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.BehzadRezaei.springcoredemo.common.Coach;
 
 @RestController
 public class DemoController {
