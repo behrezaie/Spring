@@ -22,6 +22,7 @@ public class DemoController {
     // If we had multiple implementations, we would need to use @Qualifier annotation to specify which one to use.
     // @Qualifier("cricketCoach") // specify which bean to inject by its name, which is the class name with the first letter in lowercase.
     public DemoController(@Qualifier("baseballCoach") Coach theCoach) {
+        System.out.println("In constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
     }
 
