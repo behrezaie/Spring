@@ -12,6 +12,7 @@ public class DemoController {
 
     // define a private field for the dependency
     private Coach myCoach;
+    private Coach myAnotherCoach;
 
     // define a constructor for dependency injection
     // Autowired annotation tells Spring to inject the dependency here.
@@ -21,9 +22,11 @@ public class DemoController {
     @Autowired
     // If we had multiple implementations, we would need to use @Qualifier annotation to specify which one to use.
     // @Qualifier("cricketCoach") // specify which bean to inject by its name, which is the class name with the first letter in lowercase.
-    public DemoController(@Qualifier("baseballCoach") Coach theCoach) {
+    public DemoController(@Qualifier("baseballCoach") Coach theCoach,
+                          @Qualifier("baseballCoach") Coach anotherCoach) {
         System.out.println("In constructor: " + getClass().getSimpleName());
         myCoach = theCoach;
+        myAnotherCoach = anotherCoach;
     }
 
     // // define a setter method for dependency injection
@@ -36,6 +39,11 @@ public class DemoController {
     @GetMapping("/dailyworkout")
     public String dailyWorkout() {
         return myCoach.getDailyWorkout();
+    }
+
+    @GetMapping("/check")
+    public String check() {
+        return "Comparing myCoach == anotherCoach: " + (myCoach == myAnotherCoach);
     }
 
 }
