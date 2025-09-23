@@ -1,7 +1,9 @@
 package com.BehzadRezaei.cruddemo.dao;
+import java.util.List;
 import com.BehzadRezaei.cruddemo.entity.Student;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +43,14 @@ public class StudentDAOImpl implements StudentDAO {
         // get student
         Student theStudent = entityManager.find(Student.class, theId);
         return theStudent;
+    }
+
+    @Override
+    public List<Student> findAll() {
+        // create query
+        TypedQuery<Student> theQuery = entityManager.createQuery("FROM Student", Student.class);
+
+        // return query results
+        return theQuery.getResultList();
     }
 }

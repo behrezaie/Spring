@@ -22,11 +22,13 @@ public class CruddemoApplication {
 	// Here we are using it to test our DAO methods	
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			createStudent(studentDAO);
+			// createStudent(studentDAO);
 
-			createMultipleStudents(studentDAO);
+			// createMultipleStudents(studentDAO);
 
-			readStudent(studentDAO);
+			// readStudent(studentDAO);
+
+			queryForStudents(studentDAO);
 		};
 	}
 
@@ -70,6 +72,14 @@ public class CruddemoApplication {
 			System.out.println("Found student: " + myStudent);
 		} else {
 			System.out.println("Student not found with id: " + theId);
+		}
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		System.out.println("Querying for all students ...");
+		java.util.List<Student> students = studentDAO.findAll();
+		for (Student student : students) {
+			System.out.println(student);
 		}
 	}
 }
