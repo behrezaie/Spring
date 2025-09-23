@@ -15,10 +15,18 @@ public class CruddemoApplication {
 		SpringApplication.run(CruddemoApplication.class, args);
 	}
 
-	@Bean	
+	@Bean
+	// CommandLineRunner is a Spring Boot interface that indicates a bean should run when it is contained within a SpringApplication
+	// It is used to execute code after the Spring Boot application has started
+	// It is often used to perform initialization tasks or to run some code at startup
+	// Here we are using it to test our DAO methods	
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			createStudent(studentDAO);
+			// createStudent(studentDAO);
+
+			// createMultipleStudents(studentDAO);
+
+			readStudent(studentDAO);
 		};
 	}
 
@@ -33,5 +41,35 @@ public class CruddemoApplication {
 
 		// print confirmation
 		System.out.println("Saved student. Generated id: " + tempStudent.getId());
+	}
+
+	private void createMultipleStudents(StudentDAO studentDAO) {
+		System.out.println("Creating multiple student objects ...");
+		Student student1 = new Student("John", "Doe", "john.doe@gmail.com");
+		Student student2 = new Student("Jane", "Smith", "jane.smith@gmail.com");
+		Student student3 = new Student("Mike", "Brown", "mike.brown@gmail.com");
+
+		System.out.println("Saving the students ...");
+		studentDAO.save(student1);
+		studentDAO.save(student2);
+		studentDAO.save(student3);
+
+		System.out.println("Saved students. Generated ids: " +
+			student1.getId() + ", " +
+			student2.getId() + ", " +
+			student3.getId());
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		// Retrieve a student by id (assuming id = 1 for demonstration)
+		int theId = 4;
+		System.out.println("Retrieving student with id: " + theId);
+		Student myStudent = studentDAO.findById(theId);
+
+		if (myStudent != null) {
+			System.out.println("Found student: " + myStudent);
+		} else {
+			System.out.println("Student not found with id: " + theId);
+		}
 	}
 }
