@@ -15,6 +15,8 @@ public class Student {
     // define fields
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    // @GeneratedValue indicates that the value of the primary key will be generated automatically
+    // strategy = GenerationType.IDENTITY means that the database will generate the primary key value
     @Column(name="id")
     private int id;
 
