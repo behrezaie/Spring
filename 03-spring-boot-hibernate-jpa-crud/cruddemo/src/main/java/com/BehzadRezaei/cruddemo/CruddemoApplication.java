@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.BehzadRezaei.cruddemo.dao.StudentDAO;
 import com.BehzadRezaei.cruddemo.entity.Student;
+import java.util.List;
 
 @SpringBootApplication
 public class CruddemoApplication {
@@ -28,7 +29,9 @@ public class CruddemoApplication {
 
 			// readStudent(studentDAO);
 
-			queryForStudents(studentDAO);
+			// queryForStudents(studentDAO);
+
+			queryForStudentsByLastName(studentDAO, "smith");
 		};
 	}
 
@@ -77,7 +80,15 @@ public class CruddemoApplication {
 
 	private void queryForStudents(StudentDAO studentDAO) {
 		System.out.println("Querying for all students ...");
-		java.util.List<Student> students = studentDAO.findAll();
+		List<Student> students = studentDAO.findAll();
+		for (Student student : students) {
+			System.out.println(student);
+		}
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO, String lastName) {
+		System.out.println("Querying for students with last name: " + lastName);
+		List<Student> students = studentDAO.findByLastName(lastName);
 		for (Student student : students) {
 			System.out.println(student);
 		}

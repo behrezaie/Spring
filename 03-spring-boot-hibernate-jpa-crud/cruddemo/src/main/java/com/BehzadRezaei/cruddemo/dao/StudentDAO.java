@@ -10,4 +10,6 @@ public interface StudentDAO {
     Student findById(int theId);
 
     List<Student> findAll();
+
+    List<Student> findByLastName(String theLastName);
 }
