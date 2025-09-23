@@ -23,17 +23,21 @@ public class CruddemoApplication {
 	// Here we are using it to test our DAO methods	
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			// createStudent(studentDAO);
+			createStudent(studentDAO);
 
-			// createMultipleStudents(studentDAO);
+			createMultipleStudents(studentDAO);
 
-			// readStudent(studentDAO);
+			readStudent(studentDAO);
 
-			// queryForStudents(studentDAO);
+			queryForStudents(studentDAO);
 
-			// queryForStudentsByLastName(studentDAO, "smith");
+			queryForStudentsByLastName(studentDAO, "smith");
 
 			updateStudent(studentDAO);
+
+			deleteStudent(studentDAO);
+			
+			deleteAllStudents(studentDAO);
 		};
 	}
 
@@ -111,5 +115,19 @@ public class CruddemoApplication {
 
 		// display the updated student
 		System.out.println("Updated student: " + myStudent);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		// delete student based on the id: primary key
+		int studentId = 3;
+		System.out.println("Deleting student with id: " + studentId);
+		studentDAO.delete(studentId);
+		System.out.println("Deleted student id: " + studentId);
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("Deleting all students ...");
+		int numRowsDeleted = studentDAO.deleteAll();
+		System.out.println("Deleted " + numRowsDeleted + " students");
 	}
 }
