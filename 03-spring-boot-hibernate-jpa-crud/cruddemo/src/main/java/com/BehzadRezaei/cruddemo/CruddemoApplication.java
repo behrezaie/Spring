@@ -22,9 +22,9 @@ public class CruddemoApplication {
 	// Here we are using it to test our DAO methods	
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			// createStudent(studentDAO);
+			createStudent(studentDAO);
 
-			// createMultipleStudents(studentDAO);
+			createMultipleStudents(studentDAO);
 
 			readStudent(studentDAO);
 		};
