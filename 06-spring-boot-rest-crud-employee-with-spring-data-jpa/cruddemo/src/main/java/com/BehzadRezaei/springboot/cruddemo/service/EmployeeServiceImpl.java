@@ -11,37 +11,35 @@ import jakarta.transaction.Transactional;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private EmployeeDAO employeeDAO;
+    private EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeServiceImpl(EmployeeDAO theEmployeeDAO) {
-            employeeDAO = theEmployeeDAO;
+    public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
+            employeeRepository = theEmployeeRepository;
     }
 
     @Override
     public List<Employee> findAll() {
         // TODO Auto-generated method stub
-        return employeeDAO.findAll();
+        return employeeRepository.findAll();
     }
     
     @Override
     public Employee findById(int theId) {
         // TODO Auto-generated method stub
-        return employeeDAO.findById(theId);
+        return employeeRepository.findById(theId);
     }
     
-    @Transactional
     @Override
     public Employee save(Employee theEmployee) {    
         // TODO Auto-generated method stub
-        return employeeDAO.save(theEmployee);
+        return employeeRepository.save(theEmployee);
     }
     
-    @Transactional
     @Override
     public void deleteById(int theId) {
         // TODO Auto-generated method stub
-        employeeDAO.deleteById(theId);
+        employeeRepository.deleteById(theId);
     }
 
 }
