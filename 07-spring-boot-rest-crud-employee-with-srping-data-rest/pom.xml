@@ -32,7 +32,9 @@
 	<dependencies>
 		<!-- it is for swagger -->
 		<!-- Got the latest dependency from https://springdoc.org/getting-started.html -->
-		<!-- after adding this dependency, swagger can be reached from http://localhost:8080/swagger-ui/index.html -->
+		<!-- after adding this dependency, spring-docs can be reached from http://localhost:8080/v3/api-docs -->
+		<!-- and the swagger can be reached from http://localhost:8080/swagger-ui/index.html -->
+		<!-- for costum path, go to application.properties file -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
