@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 import com.BehzadRezaei.springboot.cruddemo.entity.Employee;
 import com.BehzadRezaei.springboot.cruddemo.dao.EmployeeRepository;
 
-import jakarta.transaction.Transactional;
-
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
