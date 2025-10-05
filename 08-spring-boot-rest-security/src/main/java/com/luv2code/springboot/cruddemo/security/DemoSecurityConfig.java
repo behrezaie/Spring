@@ -37,12 +37,17 @@ public class DemoSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // If we want to apply the restrictions to more than one role
+        // we can use hasAnyRole("EMPLOYEE", "MANAGER")
+        // If we want to apply the restrictions to only one role
+        // we can use hasRole("EMPLOYEE")
         http.authorizeHttpRequests(configurer ->
                         configurer
                                 .requestMatchers(HttpMethod.GET, "/api/employees").hasRole("EMPLOYEE")
                                 .requestMatchers(HttpMethod.GET, "/api/employees/**").hasRole("EMPLOYEE")
                                 .requestMatchers(HttpMethod.POST, "/api/employees").hasRole("MANAGER")
                                 .requestMatchers(HttpMethod.PUT, "/api/employees").hasRole("MANAGER")
+                                .requestMatchers(HttpMethod.PATCH, "/api/employees/**").hasRole("MANAGER")
                                 .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("ADMIN")
 
                 )
